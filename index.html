@@ -520,7 +520,6 @@
       <h3 class="rf-h3 pt-4">Government identification</h3>
       <hr>
       <p class="rf-p text-muted">
-      </p>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="aboutIdType" class="rf-p">Identification Type</label>
@@ -578,7 +577,7 @@
             <div>
               <h2 class="m-0" style="color: #1b5e20; font-size: 1.6rem; font-weight: bold;">Thank you. Your report has been submitted.</h2>
               <p class="m-0 mt-1" style="color: #333; font-size: 1.1rem;">
-                Official Report Reference Number: <strong id="confRefNum" style="background: #244873; color: #fff; padding: 4px 12px; border-radius: 4px; font-family: monospace; font-size: 1.2rem; letter-spacing: 1px;">829143</strong>
+                Official Report Reference Number: <strong id="confRefNum" style="background: #244873; color: #fff; padding: 4px 12px; border-radius: 4px; font-family: monospace; font-size: 1.2rem; letter-spacing: 1px;">RPT-829143</strong>
               </p>
             </div>
           </div>
@@ -591,7 +590,7 @@
               <ul style="margin-left: 20px; margin-top: 8px;">
                 <li><strong>If you sent money or shared banking information:</strong> Contact your bank, wire service, or card provider immediately to cancel cards and request a reversal or freeze.</li>
                 <li><strong>If you shared your Social Security Number:</strong> Visit <a href="https://www.identitytheft.gov" target="_blank" rel="noopener" style="color: #0288d1; font-weight: bold;">IdentityTheft.gov</a> to set up an official recovery plan and place a free fraud alert on your credit.</li>
-                <li><strong>Check your credit reports:</strong> Get free weekly credit reports at <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener" style="color: #0288d1; font-weight: bold;">AnnualCreditReport.com</a> to verify no fraudulent accounts were opened.</li>
+                <li><strong>Check your credit reports:</strong> Get free weekly credit reports at <a href="https://aaniranjan13-beep.github.io/annualcreditreport/" target="_blank" rel="noopener" style="color: #0288d1; font-weight: bold;">AnnualCreditReport.com</a> to verify no fraudulent accounts were opened.</li>
               </ul>
             </div>
           </div>
@@ -790,7 +789,7 @@ function onFormContinue() {
 // Form Submission Handler
 function onFormSubmit() {
   // Generate authentic reference number
-  var refNum = Math.floor(100000 + Math.random() * 900000);
+  var refNum = 'RPT-' + Math.floor(100000 + Math.random() * 900000);
   document.getElementById('confRefNum').textContent = refNum;
 
   // Gather values
